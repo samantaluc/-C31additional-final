@@ -9,7 +9,6 @@ var boats = [];// matriz navio
 function preload() {
   backgroundImg = loadImage("./assets/background.gif");
   towerImage = loadImage("./assets/tower.png");
-  
 }
 function setup() {
   canvas = createCanvas(1200,600);
@@ -20,7 +19,6 @@ function setup() {
   tower = new Tower(150, 350, 160, 310);
   cannon = new Cannon(180, 110, 100, 50, angle);
 }
-
 function draw() {
   showBoats()
   background(189);
@@ -34,14 +32,12 @@ showBoats();
   cannon.display();
   tower.display(); 
 }
-
 function keyPressed() {
   if (keyCode === DOWN_ARROW) {
     var cannonBall = new CannonBall(cannon.x, cannon.y);
     balls.push(cannonBall);
   }
 }
-
 //função para mostrar a bala
 function showCannonBalls(ball, index) {
   ball.display();
@@ -59,14 +55,13 @@ function showCannonBalls(ball, index) {
           var boat = new Boat(width,height - 100, 200, 200, position); //cria um novo barco
           boats.push(boat); //adicionar um barco ao indice da matriz
         }
-    
      for (var i = 0; i < boats.length; i++) { //loop ou laço de repetição
-          Matter.Body.setVelocity(boats[i].body, {x: -0.9, y: 0 });
-          boats[i].display();
+          Matter.Body.setVelocity(boats[i].body, {x: -0.9, y: 0 });//velocidade do navio no eixo x
+          boats[i].display(); //mostra os barcos já criado
         }
       } else {
-        var boat = new Boat(width, height - 100, 200, 200, -100);
-        boats.push(boat);
+        var boat = new Boat(width, height - 100, 200, 200, -100); //cria um novo barco
+        boats.push(boat); //adiciona o barco ao indice
       }
     }
 function keyReleased() {
@@ -74,6 +69,3 @@ function keyReleased() {
     balls[balls.length - 1].shoot();
   }
 }
-
-
-
