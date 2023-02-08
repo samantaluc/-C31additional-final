@@ -5,7 +5,7 @@ const Constraint = Matter.Constraint;
 var engine, world, backgroundImg;
 var canvas, angle, tower, ground, cannon;
 var balls = [];
-var boats = [];
+var boats = [];// matriz navio
 function preload() {
   backgroundImg = loadImage("./assets/background.gif");
   towerImage = loadImage("./assets/tower.png");
@@ -50,24 +50,18 @@ function showCannonBalls(ball, index) {
     balls.splice(index, 1);
   }
 }
- function showBoats() {
-  if (boats.length > 0) {
-     if (
-          boats.length < 4 &&
-          boats[boats.length - 1].body.position.x < width - 300
-        ) {
-          var positions = [-130, -100, -120, -80];
-          var position = random(positions);
-          var boat = new Boat(width,height - 100, 200, 200, position);
-          boats.push(boat);
+ function showBoats() {// função de mostrar os barcos
+  if (boats.length > 0) { //se o comprimento da matriz dos barcos for maior que 0
+     if (boats.length < 4 && boats[boats.length - 1].body.position.x < width - 300) 
+      { //se o comprimento da matriz for menor que 4 barcos E o ultimo esteja a 300 px da largura da tela
+          var positions = [-130, -100, -120, -80]; //seleciona uma dessas posição
+          var position = random(positions); //sorteia uma das posições
+          var boat = new Boat(width,height - 100, 200, 200, position); //cria um novo barco
+          boats.push(boat); //adicionar um barco ao indice da matriz
         }
     
-     for (var i = 0; i < boats.length; i++) {
-          Matter.Body.setVelocity(boats[i].body, {
-            x: -0.9,
-            y: 0
-          });
-    
+     for (var i = 0; i < boats.length; i++) { //loop ou laço de repetição
+          Matter.Body.setVelocity(boats[i].body, {x: -0.9, y: 0 });
           boats[i].display();
         }
       } else {
